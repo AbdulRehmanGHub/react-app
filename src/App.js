@@ -4,7 +4,7 @@ import MovieCard from './MovieCard';
 
 import './App.css';
 import SearchIcon from './search.svg';
-const API_URL = 'http://www.omdbapi.com?apikey=7a0e2e32';
+const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=7a0e2e32';
 
 const movie1 = {
         "Title": "The Amazing Spiderman 2 Webb Cut",
@@ -18,7 +18,7 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const searchMovies = async (title) =>{
-        const response = await fetch(`${'http://www.omdbapi.com/?apikey=7a0e2e32&s=Spiderman'}&s=${title}`);
+        const response = await fetch(`${'http://www.omdbapi.com/?apikey=7a0e2e32&s'}&s=${title}`);
         const data = await response.json();
 
         setMovies(data.Search);
