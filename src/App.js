@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-import MovieCard from './MovieCard';
+import MovieCard from "./MovieCard";
+import SearchIcon from "./search.svg";
+import "./App.css";
 
 import './App.css';
 import SearchIcon from './search.svg';
-const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=7a0e2e32';
+const API_URL = 'http://www.omdbapi.com?apikey=7a0e2e32';
 
 const movie1 = {
         "Title": "The Amazing Spiderman 2 Webb Cut",
@@ -18,33 +20,30 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const searchMovies = async (title) =>{
-        const response = await fetch(`${'http://www.omdbapi.com/?apikey=7a0e2e32&s'}&s=${title}`);
+        const response = await fetch(`${'http://www.omdbapi.com/?apikey=7a0e2e32&s=Spiderman'}&s=${title}`);
         const data = await response.json();
 
-        setMovies(data.Search);
-    }
-    useEffect(() => {
-        searchMovies('Spiderman');
-    }, []);
+    setMovies(data.Search);
+  };
 
-    return (
-        <div className="app">
-            <h1>MovieLand</h1>
+  return (
+    <div className="app">
+      <h1>MovieLand</h1>
 
-            <div className="search">
-                <input 
-                    placeholder="Search for movies"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <img
-                    src={SearchIcon}
-                    alt="search"
-                    onClick={() => searchMovies(searchTerm)}
-                />
-            </div>
+      <div className="search">
+        <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for movies"
+        />
+        <img
+          src={SearchIcon}
+          alt="search"
+          onClick={() => searchMovies(searchTerm)}
+        />
+      </div>
 
-             {movies?.length > 0 ? (
+      {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
             <MovieCard movie={movie} />
