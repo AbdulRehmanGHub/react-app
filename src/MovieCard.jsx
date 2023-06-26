@@ -2,7 +2,7 @@ import React from 'react';
 
 const MovieCard = ({ movie: { imdbID, Year, Poster, Title, Type } }) => {
   return (
-    <div className="movie" key="http://www.omdbapi.com/?i=tt3896198">
+   <div className="movie" key={imdbID}>
       <div>
         <p>{Year}</p>
       </div>
